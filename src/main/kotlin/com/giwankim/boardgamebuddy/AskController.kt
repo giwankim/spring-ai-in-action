@@ -1,5 +1,6 @@
 package com.giwankim.boardgamebuddy
 
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -10,6 +11,6 @@ class AskController(
 ) {
     @PostMapping("/ask")
     fun ask(
-        @RequestBody question: Question,
+        @RequestBody @Valid question: Question,
     ): Answer = boardGameService.askQuestion(question)
 }

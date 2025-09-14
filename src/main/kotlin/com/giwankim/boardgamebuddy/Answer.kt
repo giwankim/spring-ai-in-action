@@ -1,5 +1,6 @@
 package com.giwankim.boardgamebuddy
 
 data class Answer(
-    val answer: String?,
+    val gameTitle: String,
+    val answer: String,
 )

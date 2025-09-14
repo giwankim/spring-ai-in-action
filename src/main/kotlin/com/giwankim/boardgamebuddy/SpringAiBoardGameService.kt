@@ -2,10 +2,8 @@ package com.giwankim.boardgamebuddy
 
 import org.springframework.ai.chat.client.ChatClient
 import org.springframework.ai.chat.prompt.ChatOptions
-import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
 
-@Primary
 @Service
 class SpringAiBoardGameService(
     chatClientBuilder: ChatClient.Builder,
@@ -23,12 +21,13 @@ class SpringAiBoardGameService(
             }.build()
 
     override fun askQuestion(question: Question): Answer {
+        val prompt = "Answer this question about ${question.gameTitle}: ${question.question}"
         val answerText =
             chatClient
                 .prompt()
-                .user(question.question)
+                .user(prompt)
                 .call()
-                .content()
-        return Answer(answerText)
+                .content() ?: ""
+        return Answer(gameTitle = question.gameTitle, answer = answerText)
     }
 }
