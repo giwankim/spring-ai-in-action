@@ -22,13 +22,13 @@ java {
 }
 
 dependencies {
-    implementation(libs.spring.boot.starterValidation)
-    implementation(libs.spring.boot.starterWeb)
+    implementation(libs.springBoot.starterValidation)
+    implementation(libs.springBoot.starterWeb)
     implementation(libs.jackson.moduleKotlin)
     implementation(libs.kotlin.reflect)
-    implementation(libs.spring.ai.starterModelOpenai)
+    implementation(libs.springAi.starterModelOpenai)
     implementation(libs.kotlin.logging)
-    testImplementation(libs.spring.boot.starterTest)
+    testImplementation(libs.springBoot.starterTest)
     testImplementation(libs.kotlin.testJunit5)
     testRuntimeOnly(libs.junit.platformLauncher)
 }
@@ -36,7 +36,7 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom(
-            libs.spring.ai.bom
+            libs.springAi.bom
                 .get()
                 .toString(),
         )
