@@ -23,7 +23,7 @@ class SpringAiBoardGameService(
                 .prompt()
                 .user(question.question)
                 .call()
-                .content() ?: ""
+                .content()
         return Answer(answerText)
     }
 }
