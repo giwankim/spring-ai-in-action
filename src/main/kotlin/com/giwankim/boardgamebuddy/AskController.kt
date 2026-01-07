@@ -12,5 +12,7 @@ class AskController(
     @PostMapping("/ask")
     fun ask(
         @RequestBody @Valid question: Question,
-    ): Answer = boardGameService.askQuestion(question)
+    ): Answer {
+        return boardGameService.askQuestion(question)
+    }
 }

@@ -8,26 +8,22 @@ import org.springframework.stereotype.Service
 class SpringAiBoardGameService(
     chatClientBuilder: ChatClient.Builder,
 ) : BoardGameService {
-    private val chatClient: ChatClient =
-        chatClientBuilder
-            .apply {
-                val chatOptions =
-                    ChatOptions
-                        .builder()
-                        .model("gpt-5-nano")
-                        .temperature(1.0)
-                        .build()
-                defaultOptions(chatOptions)
-            }.build()
+    private val chatClient = chatClientBuilder
+        .defaultOptions(
+            ChatOptions.builder()
+                .model("gpt-5-nano")
+                .temperature(1.0)
+                .build(),
+        )
+        .build()
 
     override fun askQuestion(question: Question): Answer {
-        val prompt = "Answer this question about ${question.gameTitle}: ${question.question}"
         val answerText =
             chatClient
                 .prompt()
-                .user(prompt)
+                .user(question.question)
                 .call()
                 .content() ?: ""
-        return Answer(gameTitle = question.gameTitle, answer = answerText)
+        return Answer(answerText)
     }
 }

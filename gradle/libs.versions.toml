@@ -35,4 +35,4 @@ jackson-moduleKotlin = { module = "com.fasterxml.jackson.module:jackson-module-k
 junit-platformLauncher = { module = "org.junit.platform:junit-platform-launcher" }
 kotlin-testJunit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
 springBoot-starterTest = { module = "org.springframework.boot:spring-boot-starter-test" }
-wiremock-springBoot = { module = "com.wiremock.integrations:wiremock-spring-boot", version.ref = "wiremock-spring-boot" }
+wiremock-springBoot = { module = "org.wiremock.integrations:wiremock-spring-boot", version.ref = "wiremock-spring-boot" }
