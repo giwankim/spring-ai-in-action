@@ -11,8 +11,8 @@ import java.time.LocalDateTime
 @RestControllerAdvice
 class ExceptionHandlerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun handleMethodArgumentNotValidException(exception: MethodArgumentNotValidException): ProblemDetail =
-        ProblemDetail
+    fun handleMethodArgumentNotValidException(exception: MethodArgumentNotValidException): ProblemDetail {
+        return ProblemDetail
             .forStatusAndDetail(HttpStatus.BAD_REQUEST, "Validation failed")
             .apply {
                 val validationMessages =
@@ -20,4 +20,5 @@ class ExceptionHandlerAdvice {
                 setProperty("errors", validationMessages)
                 setProperty("timestamp", LocalDateTime.now())
             }
+    }
 }

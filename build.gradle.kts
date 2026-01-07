@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.kotlin.logging)
     testImplementation(libs.springBoot.starterTest)
     testImplementation(libs.kotlin.testJunit5)
+    testImplementation(libs.wiremock.springBoot)
     testRuntimeOnly(libs.junit.platformLauncher)
 }
 
