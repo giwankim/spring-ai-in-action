@@ -1,0 +1,3 @@
+package com.giwankim.boardgamebuddy
+
+class SpringAiBoardGameServiceMockOpenAiTests

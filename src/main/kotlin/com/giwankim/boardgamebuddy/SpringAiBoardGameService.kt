@@ -2,9 +2,11 @@ package com.giwankim.boardgamebuddy
 
 import org.springframework.ai.chat.client.ChatClient
 import org.springframework.ai.chat.prompt.ChatOptions
+import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
 
 @Service
+@Primary
 class SpringAiBoardGameService(
     chatClientBuilder: ChatClient.Builder,
 ) : BoardGameService {
