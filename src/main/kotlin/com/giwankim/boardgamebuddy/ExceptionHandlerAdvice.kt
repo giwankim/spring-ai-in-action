@@ -17,7 +17,8 @@ class ExceptionHandlerAdvice {
             .apply {
                 val validationMessages =
                     exception.bindingResult.allErrors.map(MessageSourceResolvable::getDefaultMessage)
-                setProperty("errors", validationMessages)
+
+                setProperty("validationErrors", validationMessages)
                 setProperty("timestamp", LocalDateTime.now())
             }
     }

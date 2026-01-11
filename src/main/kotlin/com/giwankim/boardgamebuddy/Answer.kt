@@ -1,3 +1,3 @@
 package com.giwankim.boardgamebuddy
 
-data class Answer(val answer: String?)
+data class Answer(val gameTitle: String, val answer: String?)
