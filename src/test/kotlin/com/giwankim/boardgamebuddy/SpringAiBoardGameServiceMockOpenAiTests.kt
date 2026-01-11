@@ -1,6 +1,6 @@
 package com.giwankim.boardgamebuddy
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.ai.chat.client.ChatClient
 import org.springframework.ai.openai.OpenAiChatModel
@@ -49,8 +49,8 @@ class SpringAiBoardGameServiceMockOpenAiTests(
     fun `test stuff`() {
         val expectedAnswer = "Checkers is a game for two players."
         mockOpenAiChatResponse(expectedAnswer)
-        val answer = boardGameService.askQuestion(Question("How many can play checkers?"))
-        Assertions.assertThat(answer.answer)
+        val answer = boardGameService.askQuestion(Question("Checkers", "How many can play?"))
+        assertThat(answer.answer)
             .isEqualTo(expectedAnswer)
     }
 
