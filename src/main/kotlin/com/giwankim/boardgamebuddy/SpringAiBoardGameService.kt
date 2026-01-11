@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
 class SpringAiBoardGameService(
     chatClientBuilder: ChatClient.Builder,
     @param:Value("classpath:/promptTemplates/questionPromptTemplate.st") private val questionPromptTemplate: Resource,
+    private val gameRulesService: GameRulesService,
 ) : BoardGameService {
     private val chatClient = chatClientBuilder
         .defaultOptions(
@@ -21,6 +22,8 @@ class SpringAiBoardGameService(
         .build()
 
     override fun askQuestion(question: Question): Answer {
+        val gameRules = gameRulesService.getRulesFor(question.gameTitle)
+
         val answerText =
             chatClient
                 .prompt()
@@ -28,6 +31,7 @@ class SpringAiBoardGameService(
                     it.text(questionPromptTemplate)
                         .param("gameTitle", question.gameTitle)
                         .param("question", question.question)
+                        .param("rules", gameRules)
                 }
                 .call()
                 .content()

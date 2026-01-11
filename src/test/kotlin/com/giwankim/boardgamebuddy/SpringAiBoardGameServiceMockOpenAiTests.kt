@@ -19,7 +19,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import org.stringtemplate.v4.ST
 import java.nio.charset.Charset
 
-@RestClientTest(SpringAiBoardGameService::class)
+@RestClientTest(components = [SpringAiBoardGameService::class, GameRulesService::class])
 class SpringAiBoardGameServiceMockOpenAiTests(
     val mockServer: MockRestServiceServer,
     val boardGameService: SpringAiBoardGameService,
