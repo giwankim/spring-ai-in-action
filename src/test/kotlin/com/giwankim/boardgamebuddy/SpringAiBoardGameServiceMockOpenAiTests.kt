@@ -46,10 +46,10 @@ class SpringAiBoardGameServiceMockOpenAiTests(
     }
 
     @Test
-    fun `test stuff`() {
+    fun `askQuestion returns expected answer from mocked OpenAI`() {
         val expectedAnswer = "Checkers is a game for two players."
         mockOpenAiChatResponse(expectedAnswer)
-        val answer = boardGameService.askQuestion(Question("Checkers", "How many can play?"))
+        val answer = boardGameService.askQuestion(Question(gameTitle = "Checkers", question = "How many can play?"))
         assertThat(answer.answer)
             .isEqualTo(expectedAnswer)
     }

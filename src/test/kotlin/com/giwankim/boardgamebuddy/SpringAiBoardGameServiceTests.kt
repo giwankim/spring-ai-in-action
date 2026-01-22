@@ -17,7 +17,7 @@ class SpringAiBoardGameServiceTests(
     fun `evaluate relevancy`() {
         val userText = "How many pieces are there?"
         val game = "Checkers"
-        val question = Question(game, userText)
+        val question = Question(gameTitle = game, question = userText)
 
         val answer = boardGameService.askQuestion(question)
 

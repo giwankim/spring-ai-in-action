@@ -13,7 +13,7 @@ ktlint = "14.0.1"
 spring-ai = "1.1.2"
 spring-boot = "3.5.9"
 spring-dependency-management = "1.1.7"
-wiremock-spring-boot = "4.0.8"
+wiremock-spring-boot = "4.0.9"
 
 [libraries]
 # Spring Boot

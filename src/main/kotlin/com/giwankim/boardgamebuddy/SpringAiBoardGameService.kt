@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service
 @Service
 class SpringAiBoardGameService(
     chatClientBuilder: ChatClient.Builder,
-    @param:Value("classpath:/promptTemplates/questionPromptTemplate.st") private val questionPromptTemplate: Resource,
+    @param:Value("classpath:/promptTemplates/systemPromptTemplate.st")
+    private val promptTemplate: Resource,
     private val gameRulesService: GameRulesService,
 ) : BoardGameService {
     private val chatClient = chatClientBuilder
@@ -27,15 +28,15 @@ class SpringAiBoardGameService(
         val answerText =
             chatClient
                 .prompt()
-                .user {
-                    it.text(questionPromptTemplate)
+                .system {
+                    it.text(promptTemplate)
                         .param("gameTitle", question.gameTitle)
-                        .param("question", question.question)
                         .param("rules", gameRules)
                 }
+                .user(question.question)
                 .call()
                 .content()
 
-        return Answer(question.gameTitle, answerText)
+        return Answer(gameTitle = question.gameTitle, answer = answerText)
     }
 }
