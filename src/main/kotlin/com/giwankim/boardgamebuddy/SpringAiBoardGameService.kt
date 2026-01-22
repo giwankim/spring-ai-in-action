@@ -1,11 +1,16 @@
 package com.giwankim.boardgamebuddy
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.ai.chat.client.ChatClient
 import org.springframework.ai.chat.client.entity
+import org.springframework.ai.chat.client.responseEntity
+import org.springframework.ai.chat.metadata.Usage
 import org.springframework.ai.chat.prompt.ChatOptions
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
+
+private val logger = KotlinLogging.logger { }
 
 @Service
 class SpringAiBoardGameService(
@@ -26,7 +31,7 @@ class SpringAiBoardGameService(
     override fun askQuestion(question: Question): Answer {
         val gameRules = gameRulesService.getRulesFor(question.gameTitle)
 
-        return chatClient
+        val responseEntity = chatClient
             .prompt()
             .system {
                 it.text(promptTemplate)
@@ -35,6 +40,20 @@ class SpringAiBoardGameService(
             }
             .user(question.question)
             .call()
-            .entity<Answer>()
+            .responseEntity<Answer>()
+
+        val response = responseEntity.response
+            ?: throw IllegalStateException("No response received from AI")
+
+        response.metadata.usage?.let {
+            logUsage(it)
+        }
+
+        return responseEntity.entity()
+            ?: throw IllegalStateException("Failed to parse AI response")
+    }
+
+    private fun logUsage(usage: Usage) {
+        logger.info { "Token usage: prompt=${usage.promptTokens}, generation=${usage.completionTokens}, total=${usage.totalTokens}" }
     }
 }

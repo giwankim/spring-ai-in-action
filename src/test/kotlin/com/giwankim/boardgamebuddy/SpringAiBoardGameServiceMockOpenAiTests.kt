@@ -47,9 +47,13 @@ class SpringAiBoardGameServiceMockOpenAiTests(
 
     @Test
     fun `askQuestion returns expected answer from mocked OpenAI`() {
+        val gameTitle = "Checkers"
         val expectedAnswer = "Checkers is a game for two players."
-        mockOpenAiChatResponse(expectedAnswer)
-        val answer = boardGameService.askQuestion(Question(gameTitle = "Checkers", question = "How many can play?"))
+        val content = """{"gameTitle":"$gameTitle", "answer":"$expectedAnswer"}"""
+        mockOpenAiChatResponse(content)
+
+        val answer = boardGameService.askQuestion(Question(gameTitle = gameTitle, question = "How many can play?"))
+
         assertThat(answer.answer)
             .isEqualTo(expectedAnswer)
     }
@@ -60,8 +64,8 @@ class SpringAiBoardGameServiceMockOpenAiTests(
             StreamUtils.copyToString(responseResource.inputStream, Charset.defaultCharset()),
             '$',
             '$',
-        ).add("content", content)
-
+        )
+            .add("content", content)
         mockServer.expect(requestTo("https://api.openai.com/v1/chat/completions"))
             .andRespond(withSuccess(st.render(), MediaType.APPLICATION_JSON))
     }
