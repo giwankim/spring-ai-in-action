@@ -1,6 +1,7 @@
 package com.giwankim.boardgamebuddy
 
 import org.springframework.ai.chat.client.ChatClient
+import org.springframework.ai.chat.client.entity
 import org.springframework.ai.chat.prompt.ChatOptions
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.Resource
@@ -25,18 +26,15 @@ class SpringAiBoardGameService(
     override fun askQuestion(question: Question): Answer {
         val gameRules = gameRulesService.getRulesFor(question.gameTitle)
 
-        val answerText =
-            chatClient
-                .prompt()
-                .system {
-                    it.text(promptTemplate)
-                        .param("gameTitle", question.gameTitle)
-                        .param("rules", gameRules)
-                }
-                .user(question.question)
-                .call()
-                .content()
-
-        return Answer(gameTitle = question.gameTitle, answer = answerText)
+        return chatClient
+            .prompt()
+            .system {
+                it.text(promptTemplate)
+                    .param("gameTitle", question.gameTitle)
+                    .param("rules", gameRules)
+            }
+            .user(question.question)
+            .call()
+            .entity<Answer>()
     }
 }
