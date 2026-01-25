@@ -32,15 +32,20 @@ dependencyManagement {
 }
 
 dependencies {
+    implementation(libs.springBoot.starterActuator)
     implementation(libs.springBoot.starterValidation)
     implementation(libs.springBoot.starterWeb)
     implementation(libs.jackson.moduleKotlin)
     implementation(libs.kotlin.reflect)
+    implementation(libs.springAi.advisorsVectorStore)
     implementation(libs.springAi.starterModelOpenai)
+    implementation(libs.springAi.starterVectorStoreQdrant)
     implementation(libs.kotlin.logging)
+    developmentOnly(libs.springBoot.dockerCompose)
+    developmentOnly(libs.springAi.springBootDockerCompose)
     testImplementation(libs.springBoot.starterTest)
     testImplementation(libs.kotlin.testJunit5)
-    testImplementation(libs.wiremock.springBoot)
+    testImplementation(libs.bundles.testcontainers)
     testRuntimeOnly(libs.junit.platformLauncher)
 }
 
