@@ -21,6 +21,16 @@ java {
     }
 }
 
+dependencyManagement {
+    imports {
+        mavenBom(
+            libs.springAi.bom
+                .get()
+                .toString(),
+        )
+    }
+}
+
 dependencies {
     implementation(libs.springBoot.starterValidation)
     implementation(libs.springBoot.starterWeb)
@@ -32,16 +42,6 @@ dependencies {
     testImplementation(libs.kotlin.testJunit5)
     testImplementation(libs.wiremock.springBoot)
     testRuntimeOnly(libs.junit.platformLauncher)
-}
-
-dependencyManagement {
-    imports {
-        mavenBom(
-            libs.springAi.bom
-                .get()
-                .toString(),
-        )
-    }
 }
 
 kotlin {

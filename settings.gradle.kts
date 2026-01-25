@@ -1,8 +1,8 @@
-rootProject.name = "spring-ai-in-action"
-
 plugins {
     id("de.fayard.refreshVersions") version "0.60.6"
 }
+
+rootProject.name = "spring-ai-in-action"
 
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
