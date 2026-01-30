@@ -1,10 +1,10 @@
-package com.giwankim.boardgamebuddy
+package com.giwankim.mcpfilesystem
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class BoardGameBuddyApplicationTests {
+class McpFilesystemClientApplicationTests {
     @Test
     fun contextLoads() {
     }

@@ -1,11 +1,11 @@
-package com.giwankim.boardgamebuddy
+package com.giwankim.mcpfilesystem
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class BoardGameBuddyApplication
+class McpFilesystemClientApplication
 
 fun main(args: Array<String>) {
-    runApplication<BoardGameBuddyApplication>(*args)
+    runApplication<McpFilesystemClientApplication>(*args)
 }
