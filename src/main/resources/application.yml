@@ -1,6 +1,6 @@
 spring:
   application:
-    name: spring-ai-in-action
+    name: simple-tools
   ai:
     openai:
       api-key: ${OPENAI_API_KEY}

@@ -32,26 +32,30 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation(libs.springBoot.starterActuator)
-    implementation(libs.springBoot.starterValidation)
-    implementation(libs.springBoot.starterWeb)
-    implementation(libs.jackson.moduleKotlin)
-    implementation(libs.kotlin.reflect)
-    implementation(libs.springAi.advisorsVectorStore)
+    // Spring Boot
+    implementation(libs.springBoot.starterWebMvc)
+
+    // Spring AI
     implementation(libs.springAi.starterModelOpenai)
-    implementation(libs.springAi.starterVectorStoreQdrant)
+
+    // Kotlin
+    implementation(libs.kotlin.reflect)
+
+    // Logging
     implementation(libs.kotlin.logging)
-    developmentOnly(libs.springBoot.dockerCompose)
-    developmentOnly(libs.springAi.springBootDockerCompose)
-    testImplementation(libs.springBoot.starterTest)
+
+    // Jackson
+    implementation(libs.jackson.moduleKotlin)
+
+    // Test
+    testImplementation(libs.springBoot.starterWebmvcTest)
     testImplementation(libs.kotlin.testJunit5)
-    testImplementation(libs.bundles.testcontainers)
     testRuntimeOnly(libs.junit.platformLauncher)
 }
 
 kotlin {
     compilerOptions {
-        freeCompilerArgs.addAll("-Xjsr305=strict")
+        freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
     }
 }
 
