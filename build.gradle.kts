@@ -33,23 +33,26 @@ dependencyManagement {
 
 dependencies {
     // Spring Boot
-    implementation(libs.springBoot.starterWebMvc)
+    implementation(libs.bundles.springBoot)
 
     // Spring AI
-    implementation(libs.springAi.starterModelOpenai)
+    implementation(libs.bundles.springAi)
 
-    // Kotlin
+    // Kotlin & Serialization
     implementation(libs.kotlin.reflect)
-
-    // Logging
     implementation(libs.kotlin.logging)
-
-    // Jackson
     implementation(libs.jackson.moduleKotlin)
 
-    // Test
-    testImplementation(libs.springBoot.starterWebmvcTest)
-    testImplementation(libs.kotlin.testJunit5)
+    // Database
+    implementation(libs.bundles.database)
+    runtimeOnly(libs.h2)
+
+    // Docker Compose (development)
+    developmentOnly(libs.bundles.dockerCompose)
+
+    // Testing
+    testImplementation(libs.bundles.testing)
+    testImplementation(libs.bundles.testcontainers)
     testRuntimeOnly(libs.junit.platformLauncher)
 }
 
