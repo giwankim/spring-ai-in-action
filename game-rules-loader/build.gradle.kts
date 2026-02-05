@@ -6,9 +6,9 @@ plugins {
     alias(libs.plugins.ktlint)
 }
 
-group = "com.giwankim"
+group = "com.example"
 version = "0.0.1-SNAPSHOT"
-description = "Board Game Buddy"
+description = "Game Rules Loader"
 
 java {
     toolchain {
@@ -29,37 +29,25 @@ kotlin {
 
 dependencyManagement {
     imports {
-        mavenBom(
-            libs.springAi.bom
-                .get()
-                .toString(),
-        )
+        mavenBom(libs.springAi.bom.get().toString())
+        mavenBom(libs.springCloud.bom.get().toString())
+        mavenBom(libs.springCloudFn.bom.get().toString())
     }
 }
 
 dependencies {
-    // Spring Boot starters
-    implementation(libs.springBoot.starterActuator)
-    implementation(libs.springBoot.starterValidation)
-    implementation(libs.springBoot.starterWebmvc)
+    // Kotlin
+    implementation(libs.kotlin.reflect)
     // Spring AI
     implementation(libs.springAi.advisorsVectorStore)
     implementation(libs.springAi.starterModelOpenai)
     implementation(libs.springAi.starterVectorStoreQdrant)
-    // Kotlin reflection
-    implementation(libs.kotlin.reflect)
-    // Serialization
-    implementation(libs.jackson.moduleKotlin)
-    // Logging
-    implementation(libs.kotlin.logging)
-    // Docker Compose
-    developmentOnly(libs.bundles.dockerCompose)
-    // Testcontainers
-    testImplementation(libs.bundles.testcontainers)
-    // Testing
-    testImplementation(libs.springBoot.starterActuatorTest)
-    testImplementation(libs.springBoot.starterValidationTest)
-    testImplementation(libs.springBoot.starterWebmvcTest)
+    implementation(libs.springAi.tikaDocumentReader)
+    // Spring Cloud Function
+    implementation(libs.springCloud.functionContext)
+    implementation(libs.springCloudFn.fileSupplier)
+    // Test
+    testImplementation(libs.springBoot.starterTest)
     testImplementation(libs.kotlin.testJunit5)
     testRuntimeOnly(libs.junit.platformLauncher)
 }

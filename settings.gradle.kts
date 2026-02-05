@@ -13,3 +13,4 @@ dependencyResolutionManagement {
 rootProject.name = "spring-ai-in-action"
 
 include("board-game-buddy")
+include("game-rules-loader")

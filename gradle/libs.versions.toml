@@ -5,6 +5,8 @@ kotlin-logging = "7.0.14"
 ktlint = "14.0.1"
 spring-ai = "2.0.0-M2"
 spring-boot = "4.0.2"
+spring-cloud = "2025.1.0"
+spring-functions-catalog = "5.2.0"
 spring-dependency-management = "1.1.7"
 
 [libraries]
@@ -18,6 +20,13 @@ springAi-bom = { module = "org.springframework.ai:spring-ai-bom", version.ref = 
 springAi-advisorsVectorStore = { module = "org.springframework.ai:spring-ai-advisors-vector-store" }
 springAi-starterModelOpenai = { module = "org.springframework.ai:spring-ai-starter-model-openai" }
 springAi-starterVectorStoreQdrant = { module = "org.springframework.ai:spring-ai-starter-vector-store-qdrant" }
+springAi-tikaDocumentReader = { module = "org.springframework.ai:spring-ai-tika-document-reader" }
+
+# Spring Cloud
+springCloud-bom = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+springCloudFn-bom = { module = "org.springframework.cloud.fn:spring-functions-catalog-bom", version.ref = "spring-functions-catalog" }
+springCloud-functionContext = { module = "org.springframework.cloud:spring-cloud-function-context" }
+springCloudFn-fileSupplier = { module = "org.springframework.cloud.fn:spring-file-supplier" }
 
 # Kotlin
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
@@ -32,7 +41,8 @@ kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = 
 springBoot-dockerCompose = { module = "org.springframework.boot:spring-boot-docker-compose" }
 springAi-springBootDockerCompose = { module = "org.springframework.ai:spring-ai-spring-boot-docker-compose" }
 
-# Testing
+# Test
+springBoot-starterTest = { module = "org.springframework.boot:spring-boot-starter-test" }
 springBoot-starterActuatorTest = { module = "org.springframework.boot:spring-boot-starter-actuator-test" }
 springBoot-starterValidationTest = { module = "org.springframework.boot:spring-boot-starter-validation-test" }
 springBoot-starterWebmvcTest = { module = "org.springframework.boot:spring-boot-starter-webmvc-test" }
@@ -45,10 +55,7 @@ testcontainers-junitJupiter = { module = "org.testcontainers:testcontainers-juni
 testcontainers-qdrant = { module = "org.testcontainers:testcontainers-qdrant" }
 
 [bundles]
-springBoot-starter = ["springBoot-starterActuator", "springBoot-starterValidation", "springBoot-starterWebmvc"]
-springAi = ["springAi-advisorsVectorStore","springAi-starterModelOpenai", "springAi-starterVectorStoreQdrant"]
 dockerCompose = ["springBoot-dockerCompose", "springAi-springBootDockerCompose"]
-springBoot-test = ["springBoot-starterActuatorTest", "springBoot-starterValidationTest", "springBoot-starterWebmvcTest"]
 testcontainers = ["springBoot-testcontainers", "testcontainers-junitJupiter", "testcontainers-qdrant"]
 
 [plugins]
