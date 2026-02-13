@@ -1,0 +1,18 @@
+server:
+  port: 0
+
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+    vectorstore:
+      qdrant:
+        initialize-schema: true
+        collection-name: board-game-buddy
+  cloud:
+    function:
+      definition: fileSupplier|documentReader|splitter|titleDeterminer|vectorStoreConsumer
+file:
+  supplier:
+    directory: /tmp/dropoff
+    filename-regex: .*\.(pdf|docx|txt)
