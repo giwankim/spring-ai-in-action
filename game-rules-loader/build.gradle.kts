@@ -36,8 +36,8 @@ dependencyManagement {
 }
 
 dependencies {
-    // Kotlin
-    implementation(libs.kotlin.reflect)
+    // Spring Boot
+    implementation(libs.springBoot.starterWebmvc)
     // Spring AI
     implementation(libs.springAi.advisorsVectorStore)
     implementation(libs.springAi.starterModelOpenai)
@@ -46,8 +46,14 @@ dependencies {
     // Spring Cloud Function
     implementation(libs.springCloud.functionContext)
     implementation(libs.springCloudFn.fileSupplier)
+    // Kotlin reflection
+    implementation(libs.kotlin.reflect)
+    // Serialization
+    implementation(libs.jackson.moduleKotlin)
+    // Logging
+    implementation(libs.kotlin.logging)
     // Test
-    testImplementation(libs.springBoot.starterTest)
+    testImplementation(libs.springBoot.starterWebmvcTest)
     testImplementation(libs.kotlin.testJunit5)
     testRuntimeOnly(libs.junit.platformLauncher)
 }

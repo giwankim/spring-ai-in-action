@@ -1,3 +1,7 @@
+[bundles]
+dockerCompose = ["springBoot-dockerCompose", "springAi-springBootDockerCompose"]
+testcontainers = ["springBoot-testcontainers", "testcontainers-junitJupiter", "testcontainers-qdrant"]
+
 [versions]
 java = "24"
 kotlin = "2.2.21"
@@ -42,7 +46,6 @@ springBoot-dockerCompose = { module = "org.springframework.boot:spring-boot-dock
 springAi-springBootDockerCompose = { module = "org.springframework.ai:spring-ai-spring-boot-docker-compose" }
 
 # Test
-springBoot-starterTest = { module = "org.springframework.boot:spring-boot-starter-test" }
 springBoot-starterActuatorTest = { module = "org.springframework.boot:spring-boot-starter-actuator-test" }
 springBoot-starterValidationTest = { module = "org.springframework.boot:spring-boot-starter-validation-test" }
 springBoot-starterWebmvcTest = { module = "org.springframework.boot:spring-boot-starter-webmvc-test" }
@@ -53,10 +56,6 @@ junit-platformLauncher = { module = "org.junit.platform:junit-platform-launcher"
 springBoot-testcontainers = { module = "org.springframework.boot:spring-boot-testcontainers" }
 testcontainers-junitJupiter = { module = "org.testcontainers:testcontainers-junit-jupiter" }
 testcontainers-qdrant = { module = "org.testcontainers:testcontainers-qdrant" }
-
-[bundles]
-dockerCompose = ["springBoot-dockerCompose", "springAi-springBootDockerCompose"]
-testcontainers = ["springBoot-testcontainers", "testcontainers-junitJupiter", "testcontainers-qdrant"]
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
